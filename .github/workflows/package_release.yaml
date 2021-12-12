@@ -21,7 +21,8 @@ jobs:
           override: true
 
       - name: Run cargo check
-        working-directory: game-rs
         uses: actions-rs/cargo@v1
+#        working-directory: game-rs # only works in run and shell steps
         with:
           command: check
+          args: --manifest-path game-rs/Cargo.toml

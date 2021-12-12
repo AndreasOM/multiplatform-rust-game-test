@@ -4,4 +4,4 @@ version = 3
 
 [[package]]
 name = "game-rs"
-version = "0.1.7-test"
+version = "0.1.8-dev"

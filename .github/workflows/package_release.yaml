@@ -10,7 +10,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -21,9 +21,20 @@ jobs:
           profile: minimal
           override: true
 
-      - name: Run cargo build --release
+      - name: Run cargo build --release for x86
         uses: actions-rs/cargo@v1
 #        working-directory: game-rs # only works in run and shell steps
         with:
           command: build
-          args: --release --manifest-path game-rs/Cargo.toml
+          args: --release --manifest-path game-rs/Cargo.toml --target x86_64-apple-darwin
+
+      - name: Run cargo build --release for M1
+        uses: actions-rs/cargo@v1
+#        working-directory: game-rs # only works in run and shell steps
+        with:
+          command: build
+          args: --release --manifest-path game-rs/Cargo.toml --target aarch64-apple-darwin
+
+      - name: Output results
+        run: find .
+        shell: bash

@@ -6,7 +6,7 @@ binary_dir=game-rs
 platform=macos
 app_dir=${platform}/game-rs.app
 
-echo "Creating folder structure"
+echo "Creating folder structure in ${app_dir}"
 mkdir -p ${app_dir}
 
 mkdir -p ${app_dir}/Contents/MacOS	# save a few mkdir calls by starting with a deep directory

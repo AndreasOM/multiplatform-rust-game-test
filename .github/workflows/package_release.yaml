@@ -46,3 +46,10 @@ jobs:
       - name: Package MacOS .app
         run: ./package_macos.sh
         shell: bash
+
+      - name:
+        uses: actions/upload-artifact@v2
+        with:
+          name: macos-app
+          path: macos/game-rs.app/
+       

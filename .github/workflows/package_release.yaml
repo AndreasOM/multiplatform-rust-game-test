@@ -22,6 +22,13 @@ jobs:
           override: true
           target: aarch64-apple-darwin
 
+      - name: Install cargo-get
+        uses: actions-rs/cargo@v1
+        with:
+          command: install
+          args: cargo-get
+
+
       - name: Run cargo build --release for x86
         uses: actions-rs/cargo@v1
 #        working-directory: game-rs # only works in run and shell steps
@@ -36,6 +43,7 @@ jobs:
           command: build
           args: --release --manifest-path game-rs/Cargo.toml --target aarch64-apple-darwin
 
+      - name Package MacOS .app
       - name: Output results
-        run: find .
+        run: ./package_macos.sh
         shell: bash

@@ -21,7 +21,7 @@ jobs:
           profile: minimal
           override: true
 
-      - name: Run cargo check
+      - name: Run cargo build --release
         uses: actions-rs/cargo@v1
 #        working-directory: game-rs # only works in run and shell steps
         with:

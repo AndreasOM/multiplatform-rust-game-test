@@ -43,7 +43,6 @@ jobs:
           command: build
           args: --release --manifest-path game-rs/Cargo.toml --target aarch64-apple-darwin
 
-      - name Package MacOS .app
-      - name: Output results
+      - name: Package MacOS .app
         run: ./package_macos.sh
         shell: bash

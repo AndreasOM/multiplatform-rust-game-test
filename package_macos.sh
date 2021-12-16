@@ -6,14 +6,15 @@ binary_dir=game-rs
 platform=macos
 
 
-build_number=$(git rev-list --all --count)
-echo "Build number: ${build_number}"
-
 # TODO: make this check if cargo get is available
 # faster than installing cargo-get:
 version=$(grep version ${binary_dir}/Cargo.toml|cut -d"\"" -f2)
 # version=$(cd ${binary_dir} && cargo get version)
 echo "Version: ${version}"
+
+build_number=$(git rev-list ${version} --count)
+echo "Build number: ${build_number}"
+
 
 app_dir=package/${platform}-${version}/game-rs.app
 

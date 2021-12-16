@@ -34,3 +34,19 @@ echo "Patching up Info.plist"
 exp1="s/<key>CFBundleVersion<\\/key><string>.*<\\/string>/<key>CFBundleVersion<\\/key><string>${build_number}<\\/string>/g"
 exp2="s/<key>CFBundleShortVersionString<\\/key><string>.*<\\/string>/<key>CFBundleShortVersionString<\\/key><string>${version}<\\/string>/g"
 cat ${binary_dir}/Info.plist|sed ${exp1} |sed ${exp2} > ${app_dir}/Contents/Info.plist
+
+
+echo "Compiling AppIcon"
+temp=$(mktemp -d)
+# TODO: hard coded path is probably a bad idea
+/Applications/Xcode.app/Contents/Developer/usr/bin/actool \
+	--compile ${app_dir}/Contents/Resources/ \
+	--app-icon AppIcon \
+	--platform macosx \
+	--minimum-deployment-target 10.0 \
+	Assets.xcassets \
+	--output-partial-info-plist ${temp}/Info.plist		# :TODO: this should be merged with Info.plist above
+
+cat ${temp}/Info.plist
+
+rm -r ${temp}

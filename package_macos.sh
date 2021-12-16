@@ -22,6 +22,6 @@ echo "Build number: ${build_number}"
 
 # TODO: make this check if cargo get is available
 # faster than installing cargo-get:
-version=$(grep version Cargo.toml|cut -d"\"" -f2)
+version=$(grep version ${binary_dir}/Cargo.toml|cut -d"\"" -f2)
 # version=$(cd ${binary_dir} && cargo get version)
 echo "Version: ${version}"

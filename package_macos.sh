@@ -44,7 +44,7 @@ temp=$(mktemp -d)
 	--app-icon AppIcon \
 	--platform macosx \
 	--minimum-deployment-target 10.0 \
-	Assets.xcassets \
+	${binary_dir}/Assets.xcassets \
 	--output-partial-info-plist ${temp}/Info.plist		# :TODO: this should be merged with Info.plist above
 
 cat ${temp}/Info.plist

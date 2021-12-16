@@ -28,3 +28,8 @@ lipo -create -output ${app_dir}/Contents/MacOS/${binary} \
 	${binary_dir}/target/aarch64-apple-darwin/release/${binary} \
 	${binary_dir}/target/x86_64-apple-darwin/release/${binary}
 
+echo "Patching up Info.plist"
+
+exp1="s/<key>CFBundleVersion<\\/key><string>.*<\\/string>/<key>CFBundleVersion<\\/key><string>${build_number}<\\/string>/g"
+exp2="s/<key>CFBundleShortVersionString<\\/key><string>.*<\\/string>/<key>CFBundleShortVersionString<\\/key><string>${version}<\\/string>/g"
+cat ${binary_dir}/Info.plist|sed ${exp1} |sed ${exp2} > ${app_dir}/Contents/Info.plist

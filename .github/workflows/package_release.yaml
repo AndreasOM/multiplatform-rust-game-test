@@ -50,6 +50,6 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: macos-app
+          name: macos-app-${{ GITHUB_REF_NAME }}
           path: macos/
 

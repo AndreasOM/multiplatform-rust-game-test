@@ -53,9 +53,12 @@ jobs:
         run: ./package_macos.sh
         shell: bash
 
+      - name: Zip up package
+        run: cd package && zip -9 -r macos-app-${{ github.ref_name }}.zip .
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: macos-app-${{ github.ref_name }}
-          path: package/
+          path: package/macos-app-${{ github.ref_name }}.zip
 

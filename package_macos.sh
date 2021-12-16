@@ -20,6 +20,8 @@ lipo -create -output ${app_dir}/Contents/MacOS/${binary} \
 build_number=$(git rev-list --all --count)
 echo "Build number: ${build_number}"
 
-# faster than installing cargo-get: grep version Cargo.toml|cut -d"\"" -f2
-version=$(cd ${binary_dir} && cargo get version)
+# TODO: make this check if cargo get is available
+# faster than installing cargo-get:
+version=$(grep version Cargo.toml|cut -d"\"" -f2)
+# version=$(cd ${binary_dir} && cargo get version)
 echo "Version: ${version}"

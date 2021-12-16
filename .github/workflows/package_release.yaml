@@ -22,12 +22,12 @@ jobs:
           override: true
           target: aarch64-apple-darwin
 
-      - name: Install cargo-get
-        uses: actions-rs/cargo@v1
-        with:
-          command: install
-          args: cargo-get
-
+#      - name: Install cargo-get
+#        uses: actions-rs/cargo@v1
+#        with:
+#          command: install
+#          args: cargo-get
+#
 
       - name: Run cargo build --release for x86
         uses: actions-rs/cargo@v1
@@ -47,9 +47,9 @@ jobs:
         run: ./package_macos.sh
         shell: bash
 
-      - name:
+      - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: macos-app
-          path: macos/game-rs.app
+          path: macos/
 

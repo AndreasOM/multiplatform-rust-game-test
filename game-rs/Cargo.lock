@@ -209,7 +209,7 @@ dependencies = [
 
 [[package]]
 name = "game-rs"
-version = "0.1.28-dev"
+version = "0.1.28-test"
 dependencies = [
  "minifb",
 ]

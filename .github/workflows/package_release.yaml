@@ -28,6 +28,18 @@ jobs:
           override: true
           target: aarch64-apple-darwin
 
+      - name: Cache crates
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-crates
+        with:
+          path: ~/.cargo
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+  
 #      - name: Install cargo-get
 #        uses: actions-rs/cargo@v1
 #        with:

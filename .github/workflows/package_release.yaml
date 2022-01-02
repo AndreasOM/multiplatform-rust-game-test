@@ -14,6 +14,8 @@ jobs:
 
     env:
       APP_NAME: multiplatform-rust-game-test
+      ZIP_NAME: ${{env.APP_NAME}}-macos-app-${{ github.ref_name }}.zip
+      
     steps:
 #      - name: Test environment
 #        run: zip -v
@@ -74,7 +76,7 @@ jobs:
         shell: bash
 
       - name: Zip up package
-        run: cd package && zip -9 -r macos-app-${{ github.ref_name }}.zip .
+        run: cd package && zip -9 -r ${{env.APP_NAME}}-macos-app-${{ github.ref_name }}.zip .
 
 ##      - name: Upload artifacts
 ##        uses: actions/upload-artifact@v2

@@ -12,6 +12,8 @@ jobs:
 
     runs-on: macos-11
 
+    env:
+      APP_NAME: multiplatform-rust-game-test
     steps:
 #      - name: Test environment
 #        run: zip -v
@@ -53,12 +55,12 @@ jobs:
 #          args: cargo-get
 #
 
-##      - name: Run cargo build --release for x86
-##        uses: actions-rs/cargo@v1
-#        working-directory: game-rs # only works in run and shell steps
-##        with:
-##          command: build
-##          args: --release --manifest-path game-rs/Cargo.toml --target x86_64-apple-darwin
+      - name: Run cargo build --release for x86
+        uses: actions-rs/cargo@v1
+#       working-directory: game-rs # only works in run and shell steps
+        with:
+          command: build
+          args: --release --manifest-path game-rs/Cargo.toml --target x86_64-apple-darwin
 
       - name: Run cargo build --release for M1
         uses: actions-rs/cargo@v1
@@ -74,15 +76,15 @@ jobs:
       - name: Zip up package
         run: cd package && zip -9 -r macos-app-${{ github.ref_name }}.zip .
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: macos-app-${{ github.ref_name }}
-          path: package/macos-app-${{ github.ref_name }}.zip
+##      - name: Upload artifacts
+##        uses: actions/upload-artifact@v2
+##        with:
+##          name: ${{env.APP_NAME}}-macos-app-${{ github.ref_name }}
+##          path: package/${{env.APP_NAME}}-macos-app-${{ github.ref_name }}.zip
 
       - name: Create release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            package/macos-app-${{ github.ref_name }}.zip
+            package/${{env.APP_NAME}}-macos-app-${{ github.ref_name }}.zip
             

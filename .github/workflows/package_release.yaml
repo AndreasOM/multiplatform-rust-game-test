@@ -28,6 +28,13 @@ jobs:
           override: true
           target: aarch64-apple-darwin
 
+#      - name: Install cargo-lock
+#        uses: actions-rs/cargo@v1
+#        with:
+#          command: install
+#          args: cargo-lock --features=cli
+#
+
       - name: Cache crates
         uses: actions/cache@v2
         env:
@@ -46,12 +53,12 @@ jobs:
 #          args: cargo-get
 #
 
-      - name: Run cargo build --release for x86
-        uses: actions-rs/cargo@v1
+##      - name: Run cargo build --release for x86
+##        uses: actions-rs/cargo@v1
 #        working-directory: game-rs # only works in run and shell steps
-        with:
-          command: build
-          args: --release --manifest-path game-rs/Cargo.toml --target x86_64-apple-darwin
+##        with:
+##          command: build
+##          args: --release --manifest-path game-rs/Cargo.toml --target x86_64-apple-darwin
 
       - name: Run cargo build --release for M1
         uses: actions-rs/cargo@v1

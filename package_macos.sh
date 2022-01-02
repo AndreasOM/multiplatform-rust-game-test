@@ -24,10 +24,13 @@ mkdir -p ${app_dir}
 mkdir -p ${app_dir}/Contents/MacOS	# save a few mkdir calls by starting with a deep directory
 mkdir -p ${app_dir}/Contents/Resources
 
-echo "Combining binaries int fat binaries"
-lipo -create -output ${app_dir}/Contents/MacOS/${binary} \
-	${binary_dir}/target/aarch64-apple-darwin/release/${binary} \
-	${binary_dir}/target/x86_64-apple-darwin/release/${binary}
+## echo "Combining binaries int fat binaries"
+## lipo -create -output ${app_dir}/Contents/MacOS/${binary} \
+##	${binary_dir}/target/aarch64-apple-darwin/release/${binary} \
+##	${binary_dir}/target/x86_64-apple-darwin/release/${binary}
+
+echo "Copying M1 binary :HACK: for faster testing of script"
+cp ${binary_dir}/target/aarch64-apple-darwin/release/${binary} ${app_dir}/Contents/MacOS/${binary}
 
 echo "Patching up Info.plist"
 

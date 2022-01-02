@@ -80,3 +80,9 @@ jobs:
           name: macos-app-${{ github.ref_name }}
           path: package/macos-app-${{ github.ref_name }}.zip
 
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            package/macos-app-${{ github.ref_name }}.zip
+            
